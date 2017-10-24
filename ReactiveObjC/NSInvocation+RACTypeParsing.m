@@ -26,7 +26,7 @@
 		argType++;
 	}
 
-	if (strcmp(argType, @encode(id)) == 0 || strcmp(argType, @encode(Class)) == 0) {
+	if (strstr(argType, @encode(id)) != 0 || strstr(argType, @encode(Class)) != 0 || strcmp(argType, @encode(id)) == 0 || strcmp(argType, @encode(Class)) == 0) {
 		[self setArgument:&object atIndex:(NSInteger)index];
 	} else if (strcmp(argType, @encode(char)) == 0) {
 		PULL_AND_SET(char, charValue);
@@ -95,7 +95,7 @@
 		argType++;
 	}
 
-	if (strcmp(argType, @encode(id)) == 0 || strcmp(argType, @encode(Class)) == 0) {
+	if (strstr(argType, @encode(id)) != 0 || strstr(argType, @encode(Class)) != 0 || strcmp(argType, @encode(id)) == 0 || strcmp(argType, @encode(Class)) == 0) {
 		__autoreleasing id returnObj;
 		[self getArgument:&returnObj atIndex:(NSInteger)index];
 		return returnObj;
@@ -180,7 +180,7 @@
 		returnType++;
 	}
 
-	if (strcmp(returnType, @encode(id)) == 0 || strcmp(returnType, @encode(Class)) == 0 || strcmp(returnType, @encode(void (^)(void))) == 0) {
+	if (strstr(returnType, @encode(id)) != 0 || strstr(returnType, @encode(Class)) != 0 || strcmp(returnType, @encode(id)) == 0 || strcmp(returnType, @encode(Class)) == 0 || strcmp(returnType, @encode(void (^)(void))) == 0) {
 		__autoreleasing id returnObj;
 		[self getReturnValue:&returnObj];
 		return returnObj;
